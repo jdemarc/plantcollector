@@ -23,3 +23,11 @@ class ToyCreate(CreateView):
   model = Toy
   fields = '__all__'
   success_url = '/toys/'
+
+class ToyUpdate(UpdateView):
+  model = Toy
+  fields = ['description', 'value']
+
+class ToyDelete(DeleteView):
+  model = Toy
+  success_url = '/toys/'
