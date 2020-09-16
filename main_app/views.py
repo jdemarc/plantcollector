@@ -4,11 +4,15 @@ from .models import Toy
 
 # Create your views here.
 def home(request):
-    return HttpResponse('<h1>Hello.</h1>')
+  return HttpResponse('<h1>Hello.</h1>')
 
 def about(request):
-    return render(request, 'about.html')
+  return render(request, 'about.html')
 
 def toys_index(request):
-    toys = Toy.objects.all()
-    return render(request, 'toys/index.html', {'toys' : toys})
+  toys = Toy.objects.all()
+  return render(request, 'toys/index.html', {'toys' : toys})
+
+def toys_detail(request, toy_id):
+  toy = Toy.objects.get(id=toy_id)
+  return render(request, 'toys/detail.html', {'toy' : toy})
