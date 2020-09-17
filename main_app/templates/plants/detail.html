@@ -72,7 +72,7 @@
               </span>
             </div>
             <div class="card-action">
-              <form action="" method="post">
+              <form action="{% url 'assoc_insect' plant.id insect.id %}" method="post">
                 {% csrf_token %}
                 <button type="submit" class="btn">Add</button>
               </form>
@@ -80,7 +80,7 @@
           </div>
         {% endfor %}
       {% else %}
-        <h5>{{plant.name}} Already Has All Bugs On It</h5>
+        <h5>{{plant.name}} has all the bugs on it.</h5>
       {% endif %}
     </div>
   </div>
