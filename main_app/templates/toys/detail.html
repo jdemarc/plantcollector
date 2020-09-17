@@ -20,9 +20,14 @@
     </div>
   </div>
   <div class="col s6">
+    <form method="POST">
+      {% csrf_token %}
+      {{ maintaining_form.as_p }}
+      <input type="submit" class="btn" value="Add Maintenance">
+    </form>
     <table class="striped">
       <thead>
-        <tr><th>Date</th><th>Meal</th></tr>
+        <tr><th>Date</th><th>Care</th></tr>
       </thead>
       <tbody>
         {% for maintaining in toy.maintaining_set.all %}

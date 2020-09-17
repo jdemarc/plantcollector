@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Toy
+from .forms import MaintainingForm
 
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
@@ -17,7 +18,9 @@ def toys_index(request):
 
 def toys_detail(request, toy_id):
   toy = Toy.objects.get(id=toy_id)
-  return render(request, 'toys/detail.html', {'toy' : toy})
+
+  maintaining_form = MaintainingForm()
+  return render(request, 'toys/detail.html', {'toy': toy, 'maintaining_form': maintaining_form})
 
 class ToyCreate(CreateView):
   model = Toy
