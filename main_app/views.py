@@ -18,8 +18,12 @@ def plants_index(request):
 
 def plants_detail(request, plant_id):
   plant = Plant.objects.get(id=plant_id)
+  insects_plant_doesnt_have = Insect.objects.exclude(id__in = plant.insects.all().values_list('id'))
   watering_form = WateringForm()
-  return render(request, 'plants/detail.html', {'plant': plant, 'watering_form': watering_form})
+  return render(request, 'plants/detail.html', {
+    'plant': plant, 'watering_form': watering_form,
+    'insects': insects_plant_doesnt_have
+  })
 
 def add_watering(request, plant_id):
   form = WateringForm(request.POST)

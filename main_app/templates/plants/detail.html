@@ -61,6 +61,28 @@
       {% endif %}
     </div>
     <!-- Available toys will come after this line -->
+    <div class="col s6">
+      <h3>Available Insects</h3>
+      {% if insects.count %}
+        {% for insect in insects.all %}
+          <div class="card">
+            <div class="card-content">
+              <span class="card-title">
+                A <span style="color: {{ insect.color }}">{{ insect.color }}</span> {{ insect.name }}
+              </span>
+            </div>
+            <div class="card-action">
+              <form action="" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn">Add</button>
+              </form>
+            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+        <h5>{{plant.name}} Already Has All Bugs On It</h5>
+      {% endif %}
+    </div>
   </div>
 
 <script>
