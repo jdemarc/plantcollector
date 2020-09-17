@@ -11,6 +11,7 @@ urlpatterns = [
    path('plants/<int:pk>/delete/', views.PlantDelete.as_view(), name='plants_delete'),
    path('plants/<int:plant_id>/add_watering/', views.add_watering, name='add_watering'),
    path('plants/<int:plant_id>/assoc_insect/<int:insect_id>/', views.assoc_insect, name='assoc_insect'),
+   path('plants/<int:plant_id>/unassoc_insect/<int:insect_id>/', views.unassoc_insect, name='unassoc_insect'),
    path('insects/', views.InsectList.as_view(), name='insects_index'),
    path('insects/<int:pk>/', views.InsectDetail.as_view(), name='insects_detail'),
    path('insects/create/', views.InsectCreate.as_view(), name='insects_create'),

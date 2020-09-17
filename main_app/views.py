@@ -36,6 +36,10 @@ def add_watering(request, plant_id):
 def assoc_insect(request, plant_id, insect_id):
   Plant.objects.get(id=plant_id).insects.add(insect_id)
   return redirect('detail', plant_id=plant_id)
+
+def unassoc_insect(request, plant_id, insect_id):
+  Plant.objects.get(id=plant_id).insects.remove(insect_id)
+  return redirect('detail', plant_id=plant_id)
   
 class PlantCreate(CreateView):
   model = Plant

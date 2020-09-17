@@ -54,6 +54,12 @@
                 A <span style="color: {{ insect.color }}">{{ insect.color }}</span> {{ insect.name }}
               </span>
             </div>
+              <div class="card-action">
+                <form action="{% url 'unassoc_insect' plant.id insect.id %}" method="post">
+                  {% csrf_token %}
+                  <button type="submit" class="btn">Remove</button>
+                </form>
+            </div>
           </div>
         {% endfor %}
       {% else %}
