@@ -33,6 +33,9 @@ class Maintaining(models.Model):
   def __str__(self):
     return f"{self.get_care_display()} on {self.date}"
 
+  class Meta:
+    ordering = ['-date']
+
 '''
 toys = [
   Toy('Attack Armor Batman', 'Mattel', 'Batman superhero action figure', 2004, 400),
