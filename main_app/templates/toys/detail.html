@@ -3,18 +3,36 @@
 
 <h1>Toy Details</h1>
 
-<div class="card">
-  <div class="card-content">
-    <span class="card-title">{{ toy.name }}</span>
-    <p>Maker: {{ toy.maker }}</p>
-    <p>Description: {{ toy.description }}</p>
-    <p>Release year: {{ toy.release_year }}</p>
-    <p>Estimated value: {{ toy.value }} </p>
+<div class="row">
+  <div class="col s6">
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title">{{ toy.name }}</span>
+        <p>Maker: {{ toy.maker }}</p>
+        <p>Description: {{ toy.description }}</p>
+        <p>Release Date: {{ toy.release_year }}</p>
+        <p>Estimated Value: {{ toy.value }} </p>
+      </div>
+      <div class="card-action">
+        <a href="{% url 'toys_update' toy.id %}">Edit</a>
+        <a href="{% url 'toys_delete' toy.id %}">Delete</a>
+      </div>
+    </div>
   </div>
-  <div class="card-action">
-    <a href="{% url 'toys_update' toy.id %}">Edit</a>
-    <a href="{% url 'toys_delete' toy.id %}">Delete</a>
+  <div class="col s6">
+    <table class="striped">
+      <thead>
+        <tr><th>Date</th><th>Meal</th></tr>
+      </thead>
+      <tbody>
+        {% for maintaining in toy.maintaining_set.all %}
+          <tr>
+            <td>{{maintaining.date}}</td>
+            <td>{{maintaining.get_care_display}}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
   </div>
 </div>
-
 {% endblock %}

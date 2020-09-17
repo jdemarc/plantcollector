@@ -21,7 +21,7 @@ class Toy(models.Model):
       return reverse('detail', kwargs={'toy_id': self.id})
 
 class Maintaining(models.Model):
-  date = models.DateField()
+  date = models.DateField('Maintenance date')
   care = models.CharField(
     max_length=1,
     choices=MAINTENANCE,
