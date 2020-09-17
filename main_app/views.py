@@ -42,3 +42,21 @@ class PlantUpdate(UpdateView):
 class PlantDelete(DeleteView):
   model = Plant
   success_url = '/plants/'
+
+class InsectList(ListView):
+  model = Insect
+
+class InsectDetail(DetailView):
+  model = Insect
+
+class InsectCreate(CreateView):
+  model = Insect
+  fields = '__all__'
+
+class InsectUpdate(UpdateView):
+  model = Insect
+  fields = ['name', 'color']
+
+class InsectDelete(DeleteView):
+  model = Insect
+  success_url = '/insects/'
