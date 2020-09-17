@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Toy
-from .forms import MaintainingForm
+from .models import Plant
+from .forms import WateringForm
 
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
@@ -12,32 +12,33 @@ def home(request):
 def about(request):
   return render(request, 'about.html')
 
-def toys_index(request):
-  toys = Toy.objects.all()
-  return render(request, 'toys/index.html', {'toys' : toys})
+def plants_index(request):
+  plants = Plant.objects.all()
+  return render(request, 'plants/index.html', {'plants': plants})
 
-def toys_detail(request, toy_id):
-  toy = Toy.objects.get(id=toy_id)
-  maintaining_form = MaintainingForm()
-  return render(request, 'toys/detail.html', {'toy': toy, 'maintaining_form': maintaining_form})
+def plants_detail(request, plant_id):
+  plant = Plant.objects.get(id=plant_id)
+  watering_form = WateringForm()
+  return render(request, 'plants/detail.html', {'plant': plant, 'watering_form': watering_form})
 
-def add_maintenance(request, toy_id):
-  form = MaintainingForm(request.POST)
+def add_watering(request, plant_id):
+  form = WateringForm(request.POST)
   if form.is_valid():
-    new_maintenance = form.save(commit=False)
-    new_maintenance.toy_id = toy_id
-    new_maintenance.save()
-  return redirect('detail', toy_id=toy_id)
+    new_watering = form.save(commit=False)
+    new_watering.plant_id = plant_id
+    new_watering.save()
+  return redirect('detail', plant_id=plant_id)
 
-class ToyCreate(CreateView):
-  model = Toy
+class PlantCreate(CreateView):
+  model = Plant
   fields = '__all__'
-  success_url = '/toys/'
+  success_url = '/plants/'
 
-class ToyUpdate(UpdateView):
-  model = Toy
-  fields = ['name', 'maker', 'description', 'release_year', 'value']
+class PlantUpdate(UpdateView):
+  model = Plant
+  fields = '__all__'
+  # fields = ['name', 'description', 'age']
 
-class ToyDelete(DeleteView):
-  model = Toy
-  success_url = '/toys/'
+class PlantDelete(DeleteView):
+  model = Plant
+  success_url = '/plants/'

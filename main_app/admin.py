@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import Toy, Maintaining
+from .models import Plant, Watering
 
 # Register your models here.
-admin.site.register(Toy)
-admin.site.register(Maintaining)
+admin.site.register(Plant)
+admin.site.register(Watering)

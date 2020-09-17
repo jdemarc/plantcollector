@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Delete Toy</h1>
+<h1>Delete Plant</h1>
 
 <h4> Are you sure you want to delete 
     <span class="teal-text">
@@ -12,7 +12,7 @@
 <form action="" method="POST">
     {% csrf_token %}
     <input type="submit" value="Yes -- delete!" class="btn">
-    <a href="{% url 'detail' toy.id %}">Cancel</a>
+    <a href="{% url 'detail' plant.id %}">Cancel</a>
 </form>
 
 {% endblock %}

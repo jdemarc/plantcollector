@@ -4,10 +4,10 @@ from . import views
 urlpatterns = [
    path('', views.home, name='home'),
    path('about/', views.about, name='about'),
-   path('toys/', views.toys_index, name='index'),
-   path('toys/<int:toy_id>/', views.toys_detail, name='detail'),
-   path('toys/create/', views.ToyCreate.as_view(), name='toys_create'),
-   path('toys/<int:pk>/update/', views.ToyUpdate.as_view(), name='toys_update'),
-   path('toys/<int:pk>/delete/', views.ToyDelete.as_view(), name='toys_delete'),
-   path('toys/<int:toy_id>/add_maintenance/', views.add_maintenance, name='add_maintenance')
+   path('plants/', views.plants_index, name='index'),
+   path('plants/<int:plant_id>/', views.plants_detail, name='detail'),
+   path('plants/create/', views.PlantCreate.as_view(), name='plants_create'),
+   path('plants/<int:pk>/update/', views.PlantUpdate.as_view(), name='plants_update'),
+   path('plants/<int:pk>/delete/', views.PlantDelete.as_view(), name='plants_delete'),
+   path('plants/<int:plant_id>/add_watering/', views.add_watering, name='add_watering')
 ]

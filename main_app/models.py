@@ -1,45 +1,37 @@
 from django.db import models
 from django.urls import reverse
 
-MAINTENANCE = (
-  ('C', 'Corrective'),
-  ('P', 'Preventative'),
-  ('R', 'Routine'),
+SESSION = (
+  ('M', 'Morning'),
+  ('A', 'Afternoon'),
+  ('E', 'Evening'),
 )
 # Create your models here.
-class Toy(models.Model):
+class Plant(models.Model):
     name = models.CharField(max_length=100)
-    maker = models.CharField(max_length=100)
+    genus = models.CharField(max_length=100)
+    species = models.CharField(max_length=100)
     description = models.CharField(max_length=250)
-    release_year = models.IntegerField()
-    value = models.IntegerField()
+    age = models.IntegerField()
 
     def __str__(self):
         return self.name
 
     def get_absolute_url(self):
-      return reverse('detail', kwargs={'toy_id': self.id})
+      return reverse('detail', kwargs={'plant_id': self.id})
 
-class Maintaining(models.Model):
-  date = models.DateField('Maintenance date')
-  care = models.CharField(
+class Watering(models.Model):
+  date = models.DateField('Watering date')
+  session = models.CharField(
     max_length=1,
-    choices=MAINTENANCE,
-    default=MAINTENANCE[0][0]
+    choices=SESSION,
+    default=SESSION[0][0]
   )
 
-  toy = models.ForeignKey(Toy, on_delete=models.CASCADE)
+  plant = models.ForeignKey(Plant, on_delete=models.CASCADE)
 
   def __str__(self):
-    return f"{self.get_care_display()} on {self.date}"
+    return f"{self.get_session_display()} on {self.date}"
 
   class Meta:
     ordering = ['-date']
-
-'''
-toys = [
-  Toy('Attack Armor Batman', 'Mattel', 'Batman superhero action figure', 2004, 400),
-  Toy('Scratch the Cat', 'Playmates', 'TMNT minor character Scratch', 1993, 1500),
-  Toy('Green Beret G.I. Joe', 'Hasbro', 'American hero toy G.I. Joe', 1966, 2100)
-]
-'''

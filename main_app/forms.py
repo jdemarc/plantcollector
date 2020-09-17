@@ -1,7 +1,7 @@
 from django.forms import ModelForm
-from .models import Maintaining
+from .models import Watering
 
-class MaintainingForm(ModelForm):
+class WateringForm(ModelForm):
     class Meta:
-        model = Maintaining
-        fields = ['date', 'care']
+        model = Watering
+        fields = ['date', 'session']
