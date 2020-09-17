@@ -40,7 +40,7 @@ def assoc_insect(request, plant_id, insect_id):
 def unassoc_insect(request, plant_id, insect_id):
   Plant.objects.get(id=plant_id).insects.remove(insect_id)
   return redirect('detail', plant_id=plant_id)
-  
+
 class PlantCreate(CreateView):
   model = Plant
   fields = '__all__'
