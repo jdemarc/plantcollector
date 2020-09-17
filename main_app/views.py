@@ -43,12 +43,12 @@ def unassoc_insect(request, plant_id, insect_id):
 
 class PlantCreate(CreateView):
   model = Plant
-  fields = '__all__'
+  fields = ['name', 'genus', 'species', 'description', 'age']
   success_url = '/plants/'
 
 class PlantUpdate(UpdateView):
   model = Plant
-  fields = '__all__'
+  fields = ['name', 'genus', 'species', 'description', 'age']
   # fields = ['name', 'description', 'age']
 
 class PlantDelete(DeleteView):

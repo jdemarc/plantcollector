@@ -24,7 +24,6 @@ class Plant(models.Model):
     species = models.CharField(max_length=100)
     description = models.CharField(max_length=250)
     age = models.IntegerField()
-
     insects = models.ManyToManyField(Insect)
 
     def __str__(self):
