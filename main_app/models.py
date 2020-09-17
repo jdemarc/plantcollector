@@ -1,6 +1,11 @@
 from django.db import models
 from django.urls import reverse
 
+MAINTENANCE = (
+  ('C', 'Corrective'),
+  ('P', 'Preventative'),
+  ('R', 'Routine'),
+)
 # Create your models here.
 class Toy(models.Model):
     name = models.CharField(max_length=100)
@@ -14,6 +19,19 @@ class Toy(models.Model):
 
     def get_absolute_url(self):
       return reverse('detail', kwargs={'toy_id': self.id})
+
+class Maintaining(models.Model):
+  date = models.DateField()
+  care = models.CharField(
+    max_length=1,
+    choices=MAINTENANCE,
+    default=MAINTENANCE[0][0]
+  )
+
+  toy = models.ForeignKey(Toy, on_delete=models.CASCADE)
+
+  def __str__(self):
+    return f"{self.get_care_display()} on {self.date}"
 
 '''
 toys = [
