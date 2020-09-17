@@ -16,14 +16,16 @@ class Insect(models.Model):
     return self.name
 
   def get_absolute_url(self):
-    return reverse('plants_detail', kwargs={'pk': self.id})
-    
+    return reverse('insects_detail', kwargs={'pk': self.id})
+
 class Plant(models.Model):
     name = models.CharField(max_length=100)
     genus = models.CharField(max_length=100)
     species = models.CharField(max_length=100)
     description = models.CharField(max_length=250)
     age = models.IntegerField()
+
+    insects = models.ManyToManyField(Insect)
 
     def __str__(self):
         return self.name
